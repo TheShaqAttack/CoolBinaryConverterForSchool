@@ -2,13 +2,9 @@
 # Author: David Russell
 # Date: 10/5/2025
 # Description: A super awesome program that calculates the binary value of an integer
-binary_output = []
-binary_starting_space = 0
-i = 0
-x = 0
-even = 100 #placeholder value
-value_found = False
+import math
 integer_check = False
+binary_output = []
 while integer_check == False:
     num_1 = input("Please enter an integer: ")
     if num_1.isalpha() == False:
@@ -18,38 +14,25 @@ while integer_check == False:
         else:
             print("That is not an integer")
     else:
-            print("That is not an integer")
+        print("That is not an integer")
 num_sacrifice = num_1
-if num_1 % 2 == 0:
-    even = True
+if num_1 == 1:
+    print(f"{num_1} in binary is: 1")
+elif num_1 == 0:
+    print(f"{num_1} in binary is: 0")
 else:
-    even = False
-while value_found == False: 
-    if (num_sacrifice - 2**i) > 0:
-        i+=1
-    elif (num_sacrifice - 2**i) == 0:
-        if num_1 == num_sacrifice:
-            binary_output = ["1"]
-            while x != i:#+1#
-                binary_output.append("0")
-                x+=1
-        if even == False:
-            binary_output[(binary_starting_space-(i))] = "1"
-        value_found = True
-        break
-    elif (num_sacrifice - 2**i) < 0:
-        i-=1
-        if num_1 == num_sacrifice:
-            binary_output = ["1"]
-            while x != i:#+1#
-                binary_output.append("0")
-                x+=1
-            binary_starting_space = i  
-        num_sacrifice = num_sacrifice - 2**i
-        binary_output[binary_starting_space-(i)] = "1"
-        i = 0
-        x = 0
-        if num_sacrifice == 0:
+    exp = int(math.log(num_sacrifice, 2))
+    for x in range(exp+1):
+        binary_output.append("0")
+    index_count = exp
+    for x in range(index_count+1):
+        if num_sacrifice-(2**exp) != 0:
+            binary_output[index_count-exp] = "1"
+            num_sacrifice = num_sacrifice-(2**exp)
+            exp = int(math.log(num_sacrifice, 2))
+        elif num_sacrifice-(2**exp) == 0:
+            binary_output[index_count-exp] = "1"
             break
-binary_output = "".join(binary_output)
-print(f"{num_1} in binary is: {binary_output}")
+            
+    binary_output = "".join(binary_output)
+    print(f"{num_1} in binary is: {binary_output}")
