@@ -19,14 +19,11 @@ while integer_check == False:
             print("That is not an integer")
     else:
             print("That is not an integer")
-
-
 num_sacrifice = num_1
 if num_1 % 2 == 0:
     even = True
 else:
     even = False
-    
 while value_found == False: 
     if (num_sacrifice - 2**i) > 0:
         i+=1
@@ -54,7 +51,5 @@ while value_found == False:
         x = 0
         if num_sacrifice == 0:
             break
-
 binary_output = "".join(binary_output)
-
 print(f"{num_1} in binary is: {binary_output}")
